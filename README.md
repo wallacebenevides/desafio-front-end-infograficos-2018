@@ -1,3 +1,6 @@
-Não esqueçam de entrar dentro da pasta `client` e executar o comando `npm install` antes de utilizar o projeto.
+# Teste - Front-End
 
-Para compilação, dentro de `client`, execute o comando `npm run build-prod`
+## Para testar o projeto:
+- Para subir a aplicação entre no diretório raiz do projeto e instale as dependências com o comando `npm install`;
+- Após instalar todas as depêndencias, ainda no diretório raiz, suba a aplicação com o comando `npm run start`.
+- Abra o navegador no endereço http://localhost:8080.
