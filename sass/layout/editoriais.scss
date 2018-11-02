@@ -1,0 +1,109 @@
+.editorias {        
+    padding: 16px;
+    padding-bottom: 5em;
+    overflow: hidden;
+    .editorias__header {
+        .header__filtro {
+            margin-top: 16px;
+            margin-bottom: 10px;
+            .filtro {
+                display: flex;
+            }
+            .filtro__item {                                       
+                text-align: right;
+                margin-right: 27px;
+                margin-left: 10px;                    
+                label {
+                    font-family: "Verdana";
+                    font-size: 15px;
+                    color: #7D7575; 
+                }
+                .campo {
+                    display: inline-block;
+                    padding: 8px 12px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    color: #fff;
+                    border: 0;
+                    background: #211f1f; 
+                    &:active, &:focus {
+                        outline: 0;
+                    }
+                }
+                &:after {
+                    content: "";
+                    height: 31px;
+                    width: 27px;
+                    background: #211f1f url("../assets/img/seta-baixo.png") no-repeat 50% 50%;
+                    display: inline-block;
+                    vertical-align: middle;
+                    position: absolute;
+                    pointer-events: none; 
+                }
+            } 
+            
+        }
+        @include mq('tablet-small') {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .noticias {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .noticia__content {
+            align-items: center;
+            clear: both;
+            height: auto;
+            margin: 1em;
+            &:nth-child(3n){
+                margin-right: 0;
+            }
+            &:nth-child(3n +1){
+                margin-left: 0;
+            }
+            .noticia__item {
+                display: flex;
+                width: 277px;
+                padding-left: 31px;
+                border-left: 4px solid #ad2222;
+                flex-direction: column;
+                margin-top: 3em;
+                .noticia__item--header .item__header--data {
+                    float: left;
+                    margin-bottom: 5px;
+                }
+                .noticia__item--header .item__header--editoria {
+                    font-weight: bold;
+                    float: right;
+                    margin-bottom: 5px;
+                }
+                .noticia__item--img {
+                    padding-bottom: 0.5em;
+                }
+                .noticia__item--titulo {
+                    font-weight: bold;
+                    font-size: 2em;
+                    margin-bottom: .3em;
+                    padding-top: .3em;
+                }
+                .noticia__item--conteudo {
+                    margin-bottom: .3em;
+                    p {
+                        margin-bottom: .3em; 
+                    }
+                    a {
+                        font-size: 1.3em;
+                        font-weight: bold;
+                        color: inherit;}
+                }
+            }
+        }
+    }
+
+}
+          

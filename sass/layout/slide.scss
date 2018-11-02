@@ -1,0 +1,72 @@
+.slide {
+    width: 100%;
+    height: auto;
+    margin-bottom: 3em;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    .slide__content {
+      .slide__item {
+        display: none; 
+        img {
+          width: 100%; 
+        }
+      } 
+      .slide__item.active {
+            display: block;
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: .5s;
+            animation-name: fade;
+            animation-duration: .5s; 
+          }
+    }
+    .slide__control {
+      width: 100%;
+      position: absolute;
+      top: 43%;
+      left: 0;
+      cursor: pointer;
+      button {
+        position: absolute;
+        padding: 0 15px;
+        line-height: 1.6em;
+        border: 0;
+        font-size: 3em;
+        color: #fff;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none; 
+      }
+      .slide__control--prev {
+        left: 3%;
+        background: map-get($colors, primary); 
+      }
+      .slide__control--next {
+        right: 3%;
+        background: map-get($colors, primary); 
+      }
+    }
+    .slide__pagination {
+      position: absolute;
+      bottom: 10px;
+      width: 100%; 
+      ol {
+        width: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        li {
+          background: #fff;
+          float: left;
+          margin: 5px;
+          padding: 5px;
+          cursor: pointer;
+          border: 2px solid #000; 
+        }
+        .active {
+          border: 2px solid map-get($colors, primary); } 
+      }
+    }
+  }
