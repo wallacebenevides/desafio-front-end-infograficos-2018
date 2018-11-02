@@ -5,7 +5,7 @@ import "../../util/arrayHelpers";
 export class EditoriasView extends View {
 
 
-    constructor(elemento){
+    constructor(elemento) {
         super(elemento);
         console.log(elemento);
         /* elemento.addEventListener('click', function(event) {
@@ -14,19 +14,15 @@ export class EditoriasView extends View {
         }); */
     }
 
-
-
     template(model) {
-        if (!model.editorias) return;
-
-        return model.editorias.map(editoria => {
-            return editoria.noticias.map(noticia => {
-
-                return `<div class="noticia__content">
+        if (!model.noticias) return;
+        //sconsole.log(model.noticias)
+        return model.noticias.map(noticia =>
+            `<div class="noticia__content">
                     <div class="noticia__item">
                         <div class="noticia__item--header">
                             <span class="item__header--data">${DateConverter.paraTexto(noticia.data)}</span>
-                            <span class="item__header--editoria">${editoria.nome}</span>
+                            <span class="item__header--editoria">${noticia.editoria}</span>
                         </div>
                         <div class="noticia__item-img">
                             <img src="assets/noticias/${noticia.foto}">
@@ -41,11 +37,9 @@ export class EditoriasView extends View {
                             </div>
                         </div>
                     </div>
-                </div>`
-
-            })
-        }
-        ).$flat().join('')
+                </div>
+                `
+        ).join('')
     }
 
 }

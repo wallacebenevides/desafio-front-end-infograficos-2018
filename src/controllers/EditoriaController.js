@@ -1,22 +1,20 @@
-import { Editorias } from '../domain/editoria/Editorias';
 import { Bind } from '../util/Bind';
 import { EditoriaService } from '../domain/editoria/EditoriaService';
 import { EditoriasView } from '../ui/views/EditoriasView';
-import { MensagemView } from '../ui/views/MensagemView';
 import { SlideView } from '../ui/views/SlideView';
-import { Mensagem } from '../ui/models/Mensagem';
+import { Noticias } from "../domain/editoria/Noticias";
+import { log } from "../util/promiseHelpers";
 
 import { Slides } from "../ui/models/Slides";
 
 class EditoriaController {
     constructor() {
         let $ = document.querySelector.bind(document);
-        this._ordemAtual = '';
 
         this._editoriaService = new EditoriaService()
 
-        this._editorias = new Bind(
-            new Editorias(),
+        this._noticias = new Bind(
+            new Noticias(),
             new EditoriasView($("#editoriasView")),
             'esvazia', 'adiciona', 'ordena', 'inverteOrdem'
         );
@@ -37,10 +35,11 @@ class EditoriaController {
 
     _init() {
 
-        this._editoriaService.obtemEditorias()
-            .then(editorias =>
-                editorias.forEach(editoria =>
-                    this._editorias.adiciona(editoria)
+        this._editoriaService.obtemNoticias()
+            //.then(log)
+            .then(noticias =>
+                noticias.forEach(noticia =>
+                    this._noticias.adiciona(noticia)
                 ))
             .catch(erro => this._exibeErro(erro));
 
@@ -51,20 +50,24 @@ class EditoriaController {
                 ))
             .catch(erro => this._exibeErro(erro));
 
-
-
         this._initMap();
         this._initGrafico();
 
     }
 
-    ordena(campo) {
-        if (this._ordemAtual != campo)
-            this._editorias.ordena((a, b) => a[campo] - b[campo]);
-        else
-            this._editorias.inverteOrdem();
 
-        this._ordemAtual = campo;
+    ordena(event) {
+        let campo = event.target.value;
+        let criterio;
+        if (campo === 'recentes')
+            criterio = (a, b) => b.data - a.data;
+        if ((campo === 'antigas'))
+            criterio = (a, b) => a.data - b.data;
+
+        console.log(campo)
+        if (criterio)
+            this._noticias.ordena(criterio);
+
     }
 
     // Mapa

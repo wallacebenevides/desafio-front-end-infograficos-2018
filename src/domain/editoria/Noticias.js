@@ -1,4 +1,4 @@
-export class Editorias {
+export class Noticias {
 
     constructor() {
 
@@ -7,9 +7,8 @@ export class Editorias {
     }
 
 
-    adiciona(editoria) {
-        console.log(editoria)
-        this._noticias.push(editoria);
+    adiciona(noticia) {
+        this._noticias.push(noticia);
     }
 
     esvazia() {
@@ -18,11 +17,11 @@ export class Editorias {
     ordena(criterio) {
         this._noticias.sort(criterio);
     }
-    inverteOrdem() {
-        this._noticias.reverse();
-    }
 
-    get editorias() {
+    get noticias() {
         return [].concat(this._noticias);
     }
 }
+
+export const ordenaRecentes = (a, b) => b.data - a.data;
+export const ordenaAntigas = (a, b) => b.data - a.data;

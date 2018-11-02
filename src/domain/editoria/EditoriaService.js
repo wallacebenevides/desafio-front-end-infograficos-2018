@@ -1,8 +1,10 @@
 import { HttpService } from '../../util/HttpService.js';
 import { ApplicationException } from '../../util/ApplicationException.js';
 import { resolveEditoriaAPI } from "../editoria/Editoria";
+import { ordenaRecentes } from "../editoria/Noticias";
+import "../../util/arrayHelpers";
 
-const EDITORIAS_URL = "assets/JSON/noticias.json";
+const NOTICIAS_URL = "assets/JSON/noticias.json";
 const FOTOS_URL = "assets/JSON/slide.json";
 
 export class EditoriaService {
@@ -11,15 +13,15 @@ export class EditoriaService {
         this._http = new HttpService();
     }
 
-    obtemEditorias() {
+    obtemNoticias() {
 
         return this._http
-            .get(EDITORIAS_URL)
+            .get(NOTICIAS_URL)
             .then(dados => dados[0]['Editorias'])
             .then(editorias =>
                 editorias.map(editoria =>
                     resolveEditoriaAPI(editoria)
-                ),
+                ).$flat().sort(ordenaRecentes),
                 err => {
 
                     throw new ApplicationException('Não foi possível obter as negociações da semana');
