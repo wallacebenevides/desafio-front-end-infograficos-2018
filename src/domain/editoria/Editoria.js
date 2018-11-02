@@ -31,7 +31,6 @@ export class Editoria {
 }
 
 export const resolveEditoriaAPI = (editoria) => {
-    console.log(editoria['Editoria'])
     return editoria['Notícias']
         .map(resolveNoticiaAPI(editoria['Editoria']))
 }

@@ -11,6 +11,7 @@ export class EditoriaService {
 
     constructor() {
         this._http = new HttpService();
+        this._editorias = [];
     }
 
     obtemNoticias() {
@@ -18,6 +19,10 @@ export class EditoriaService {
         return this._http
             .get(NOTICIAS_URL)
             .then(dados => dados[0]['Editorias'])
+            .then(editorias => {
+                this._editorias = editorias.map(e => e['Editoria']);
+                return editorias;
+            })
             .then(editorias =>
                 editorias.map(editoria =>
                     resolveEditoriaAPI(editoria)
@@ -27,6 +32,10 @@ export class EditoriaService {
                     throw new ApplicationException('Não foi possível obter as negociações da semana');
                 }
             );
+    }
+
+    getEditorias() {
+        return [].concat(this._editorias);
     }
 
     obtemSlides() {

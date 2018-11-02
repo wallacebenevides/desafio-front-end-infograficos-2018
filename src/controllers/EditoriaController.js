@@ -3,8 +3,8 @@ import { EditoriaService } from '../domain/editoria/EditoriaService';
 import { EditoriasView } from '../ui/views/EditoriasView';
 import { SlideView } from '../ui/views/SlideView';
 import { Noticias } from "../domain/editoria/Noticias";
-import { log } from "../util/promiseHelpers";
-
+import { FiltroView } from "../ui/views/FiltroView";
+import { List } from "../util/List";
 import { Slides } from "../ui/models/Slides";
 
 class EditoriaController {
@@ -16,13 +16,19 @@ class EditoriaController {
         this._noticias = new Bind(
             new Noticias(),
             new EditoriasView($("#editoriasView")),
-            'esvazia', 'adiciona', 'ordena', 'inverteOrdem'
+            'esvazia', 'adiciona', 'ordena', 'filtra', 'inverteOrdem'
         );
 
         this._slides = new Bind(
             new Slides(),
             new SlideView($("#slideView")),
             'esvazia', 'adiciona', 'ordena', 'inverteOrdem'
+        );
+
+        this._filtroList = new Bind(
+            new List(),
+            new FiltroView($("#filtrar")),
+            'adiciona'
         );
 
         /* this._mensagem = new Bind(
@@ -37,10 +43,12 @@ class EditoriaController {
 
         this._editoriaService.obtemNoticias()
             //.then(log)
-            .then(noticias =>
-                noticias.forEach(noticia =>
-                    this._noticias.adiciona(noticia)
-                ))
+            .then(noticias => {
+                noticias.forEach(noticia => this._noticias.adiciona(noticia));
+
+                this._editoriaService.getEditorias().forEach(editoria => this._filtroList.adiciona(editoria))
+
+            })
             .catch(erro => this._exibeErro(erro));
 
         this._editoriaService.obtemSlides()
@@ -67,6 +75,12 @@ class EditoriaController {
         console.log(campo)
         if (criterio)
             this._noticias.ordena(criterio);
+
+    }
+
+    filtra(event) {
+        let campo = event.target.value;
+        this._noticias.filtra(campo);
 
     }
 
