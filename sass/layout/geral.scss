@@ -11,6 +11,10 @@
 }
 .header__titulo {
   margin-bottom: 2em;
+  text-align: center;
+  @include mq('tablet-wide') {            
+    text-align: justify;
+  }
 }
   
   .font-1{

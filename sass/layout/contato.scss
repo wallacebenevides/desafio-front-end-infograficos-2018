@@ -12,12 +12,17 @@
     height: 100%;
     @include mq('tablet-wide') {
       width: 50%;
-  }
+    }
     .enderecos {
+      text-align: center;
+      margin: auto;
       max-width: 440px;
       font-family: "Verdana";
       color: #1f1b1b;
-      margin: 16px;
+      @include mq('tablet-wide') {
+        text-align: justify;
+        margin: 16px;        
+      }
       @media all and (min-width: 1260px) {       
        margin-left: calc((100vw - 1260px)/2);
     }
@@ -47,7 +52,7 @@
       width: 50%;
   }
     .formulario {
-      width: 80%;
+      max-width: 80%;
       color: #fff;
       margin-left: 30px;
       @media all and (min-width: 1260px) {       
@@ -55,10 +60,15 @@
      }
      margin-top: 90px;
       h5 {
+        text-align: center;
         font-size: 22px;
         font-family: "Verdana";
         margin-bottom: 12px;
         font-weight: 700;
+        @include mq('tablet-wide') {
+          text-align: justify;
+      }
+        
       }
       button {
         float: right;

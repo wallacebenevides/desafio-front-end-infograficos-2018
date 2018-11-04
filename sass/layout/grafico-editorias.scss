@@ -11,6 +11,10 @@
   }
   .grafico {
     //transform: rotate(-90deg);
+    margin: auto;
+    @include mq('tablet-wide') {
+      margin: unset;    
+  }
     h2 {
       margin-top: 10px;
       margin-bottom: 40px;
@@ -51,6 +55,12 @@
     }
   }
   .conteudo {  
+    margin: 0 auto;   
+    width: min-content;
+    @include mq('tablet-wide') {
+      margin: unset;
+      width: unset; 
+  }
     h2 {
       font-size: 1.5em;
       font-weight: bold;      
@@ -66,8 +76,10 @@
       font-family: "Verdana";
       font-size: 16px;
       color: #2c3339;
-      &:nth-of-type(2n){
-        padding-left: 31px;
+      @include mq('tablet-wide') {        
+        &:nth-of-type(2n){
+          padding-left: 31px;
+        }
       }
     }
     

@@ -2,7 +2,10 @@
     padding: 16px;
     padding-bottom: 5em;
     overflow: hidden;
+
     .editorias__header {
+        text-align: center;
+        margin: auto;
         .header__filtro {
             margin-top: 16px;
             margin-bottom: 10px;
@@ -53,18 +56,28 @@
     }
     .noticias {
         display: flex;
-        justify-content: space-between;
         flex-wrap: wrap;
+        @include mq('tablet') {            
+            justify-content: space-around;
+        }
+        @include mq('tablet-wide') {            
+            justify-content: space-between;            
+        }
         .noticia__content {
             align-items: center;
             clear: both;
             height: auto;
-            margin: 1em;
-            &:nth-child(3n){
-                margin-right: 0;
-            }
-            &:nth-child(3n +1){
-                margin-left: 0;
+            margin: auto;
+            @include mq('tablet-small') {            
+                margin: 1em;
+            }           
+            @include mq('tablet-wide') {            
+                    &:nth-child(3n){
+                        margin-right: 0;
+                    }
+                    &:nth-child(3n +1){
+                        margin-left: 0;
+                    }
             }
             .noticia__item {
                 display: flex;

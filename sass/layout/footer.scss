@@ -3,8 +3,13 @@ footer[role="footer"] {
     background: #1d1414;
     padding: 30px 16px 15px 16px;
     .footer p {
+      text-align: center;
       color: #fff;
       font-family: "Verdana";
       font-weight: bold;
-      font-size: 18px; }
+      font-size: 18px;
+      @include mq('tablet-wide') {            
+        text-align: justify;
+      }
+    }
 }
