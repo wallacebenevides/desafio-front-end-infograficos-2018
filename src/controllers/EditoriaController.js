@@ -1,11 +1,6 @@
-import { Bind } from '../util/Bind';
-import { EditoriaService } from '../domain/editoria/EditoriaService';
-import { EditoriasView } from '../ui/views/EditoriasView';
-import { SlideView } from '../ui/views/SlideView';
-import { Noticias } from "../domain/editoria/Noticias";
-import { FiltroView } from "../ui/views/FiltroView";
-import { List } from "../util/List";
-import { Slides } from "../ui/models/Slides";
+import { Noticias, EditoriaService } from "../domain/index";
+import { EditoriasView, SlideView, FiltroView, Slides } from '../ui/index';
+import { List, Bind } from "../util/index";
 
 class EditoriaController {
     constructor() {
@@ -16,7 +11,7 @@ class EditoriaController {
         this._noticias = new Bind(
             new Noticias(),
             new EditoriasView($("#editoriasView")),
-            'esvazia', 'adiciona', 'ordena', 'filtra', 'inverteOrdem'
+            'esvazia', 'adiciona', 'ordena', 'filtra'
         );
 
         this._slides = new Bind(

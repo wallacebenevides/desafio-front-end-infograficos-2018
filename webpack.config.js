@@ -42,7 +42,7 @@ let SERVICE_URL = JSON.stringify('http://localhost:3000');
 
 if (process.env.NODE_ENV == 'production') {
 
-    SERVICE_URL = JSON.stringify('http://endereco-da-sua-api');
+    SERVICE_URL = JSON.stringify('http://endereco-de-prod');
 
     plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 

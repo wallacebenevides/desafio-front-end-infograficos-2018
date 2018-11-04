@@ -3,3 +3,8 @@ export * from './ApplicationException.js';
 export * from './HttpService.js';
 export * from './ProxyFactory.js';
 export * from './Obrigatorio.js';
+export * from './List';
+export * from './promiseHelpers';
+export * from './arrayHelpers';
+export * from './dateHelpers';
+export * from './DataInvalidaException';

@@ -1,5 +1,4 @@
-import { obrigatorio } from '../../util/index.js';
-import { normalizaData } from "../../util/dateHelpers";
+import { obrigatorio, normalizaData } from '../../util/index';
 
 export class Noticia {
 

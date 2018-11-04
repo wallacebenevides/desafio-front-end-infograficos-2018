@@ -1,7 +1,5 @@
-import { HttpService } from '../../util/HttpService.js';
-import { ApplicationException } from '../../util/ApplicationException.js';
-import { resolveEditoriaAPI } from "../editoria/Editoria";
-import { ordenaRecentes } from "../editoria/Noticias";
+import { ApplicationException, HttpService } from '../../util/index';
+import { resolveEditoriaAPI, ordenaRecentes } from "../index";
 import "../../util/arrayHelpers";
 
 const NOTICIAS_URL = "assets/JSON/noticias.json";
