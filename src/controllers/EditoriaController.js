@@ -22,7 +22,7 @@ class EditoriaController {
         this._slides = new Bind(
             new Slides(),
             new SlideView($("#slideView")),
-            'esvazia', 'adiciona', 'ordena', 'inverteOrdem'
+            'esvazia', 'adiciona', 'next', 'prev', 'slideTo'
         );
 
         this._filtroList = new Bind(
@@ -95,11 +95,20 @@ class EditoriaController {
         });
 
         var image = './assets/img/marcador.png';
-        var beachMarker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
             icon: image
         });
+    }
+    slideNext() {
+        this._slides.next();
+    }
+    slidePrev() {
+        this._slides.prev();
+    }
+    slideTo(index) {
+        this._slides.slideTo(index);
     }
 
     /**

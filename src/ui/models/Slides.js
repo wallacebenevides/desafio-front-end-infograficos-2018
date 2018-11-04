@@ -3,7 +3,8 @@ export class Slides {
     constructor() {
 
         this._slides = [];
-        Object.freeze(this);
+        this._slideIndex = 0;
+        //Object.freeze(this);
     }
 
 
@@ -14,11 +15,31 @@ export class Slides {
     esvazia() {
         this._slides = [];
     }
-    ordena(criterio) {
-        this._slides.sort(criterio);
+
+    next() {
+        if (this._slideIndex === this._slides.length - 1) {
+            this._slideIndex = 0;
+            return;
+        }
+        this._slideIndex++;
     }
-    inverteOrdem() {
-        this._slides.reverse();
+
+    prev() {
+        if (this._slideIndex === 0) {
+            this._slideIndex = this._slides.length -1;
+            return;
+        }
+        this._slideIndex--;
+    }
+    slideTo(index) {
+        // if (index !== this._slideIndex)
+        this._slideIndex = index;
+        console.log(index)
+
+    }
+
+    get slideIndex() {
+        return this._slideIndex;
     }
 
     get imagens() {
