@@ -34,17 +34,18 @@ class EditoriaController {
         this._init();
     }
 
-    _init() {
+    async _init() {
 
-        this._editoriaService.obtemNoticias()
-            //.then(log)
-            .then(noticias => {
-                noticias.forEach(noticia => this._noticias.adiciona(noticia));
+        // usando async await
+        try {
+            let noticias = await this._editoriaService.obtemNoticias();
+            noticias.forEach(noticia => this._noticias.adiciona(noticia));
 
-                this._editoriaService.getEditorias().forEach(editoria => this._filtroList.adiciona(editoria))
-
-            })
-            .catch(erro => this._exibeErro(erro));
+            let editorias = this._editoriaService.getEditorias();
+            editorias.forEach(editoria => this._filtroList.adiciona(editoria));
+        } catch (error) {
+            this._exibeErro(erro);
+        }
 
         this._editoriaService.obtemSlides()
             .then(imagens =>
