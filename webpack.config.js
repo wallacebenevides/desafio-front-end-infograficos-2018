@@ -9,7 +9,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 let plugins = [];
 
 plugins.push(new HtmlWepackPlugin({
-    
+
 
     hash: true,
     minify: {
@@ -25,7 +25,8 @@ plugins.push(new HtmlWepackPlugin({
 plugins.push(
     new CopyWebpackPlugin([
     {from:'assets/img/noticias/',to:'assets/noticias/'},
-    {from:'assets/img/slide/',to:'assets/slide/'}
+    {from:'assets/img/slide/',to:'assets/slide/'},
+    {from: 'assets/JSON/', to: 'assets/JSON/'}
     ])
 )
 
@@ -49,12 +50,12 @@ if (process.env.NODE_ENV == 'production') {
     plugins.push(new babiliPlugin());
 
     plugins.push(new optimizeCSSAssetsPlugin({
-        cssProcessor: require('cssnano'),        
+        cssProcessor: require('cssnano'),
         cssProcessorOptions: {
             discardComments: {
                 removeAll: true
             }
-        },    
+        },
         canPrint: true
     }));
 }
@@ -73,7 +74,7 @@ module.exports = {
     module: [
         './assets/img'
     ],
-    module: {    
+    module: {
         rules: [
             {
                 test: /\.css$/,
@@ -105,7 +106,7 @@ module.exports = {
                 test: /\.(gif|png|jpe?g|svg)$/i,
                 exclude: /node_modules/,
                 loader: 'file-loader'
-            }            
+            }
         ]
     },
     plugins
