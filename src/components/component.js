@@ -1,8 +1,8 @@
-import { htmlToElements } from "../../util/domHelpers";
+import { htmlToElements } from "../util/domHelpers";
 
 const ATTRIBUTE_NAME = 'data-events';
 
-export class View {
+export class Component {
 
     constructor(_parentElement) {
         this._parentElement = _parentElement;
@@ -10,7 +10,7 @@ export class View {
     }
 
     update(model) {
-        let template = this.template(model);
+        let template = this.render(model);
         let events = new Map();
         let pattern = /\(([a-z]+)\)=["|']([a-zA-Z]+)\((\w*)\)["|']/;
         let regex = new RegExp(pattern, 'gm')
@@ -93,7 +93,7 @@ export class View {
         this._parentElement.innerHTML = template;
     }
 
-    template(model) {
+    render(model) {
 
         throw new Error('Você precisa implementar o método template');
     }

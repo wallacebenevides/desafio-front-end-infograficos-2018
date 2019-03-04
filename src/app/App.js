@@ -1,17 +1,17 @@
-import { EditoriaService } from "../domain/index";
-import { EditoriasView, SlideView, FiltroView } from '../ui/index';
+import { EditoriaService } from "../components/editorias/editoria.service";
+import { EditoriasComponent, FiltroComponent, SlideComponent } from '../components/index';
 
-class EditoriaController {
+class App {
     constructor() {
         let $ = document.querySelector.bind(document);
 
-        this._editoriaService = new EditoriaService()
+        this._editoriaService = new EditoriaService();
 
-        this._noticias = new EditoriasView($("#editoriasView"));
+        this._noticias = new EditoriasComponent($("#editoriasView"));
 
-        this._slides = new SlideView($("#slideView"));
+        this._slides = new SlideComponent($("#slideView"));
 
-        this._filtroList = new FiltroView($("#filtrar"), this._noticias);
+        this._filtroList = new FiltroComponent($("#filtrar"), this._noticias);
 
         /* this._mensagem = new Bind(
             new Mensagem(),
@@ -31,7 +31,7 @@ class EditoriaController {
             let editorias = this._editoriaService.getEditorias();
             editorias.forEach(editoria => this._filtroList.adiciona(editoria));
         } catch (error) {
-            this._exibeErro(erro);
+            this._exibeErro(error);
         }
 
         this._editoriaService.obtemSlides()
@@ -39,7 +39,7 @@ class EditoriaController {
                 imagens.forEach(imagem =>
                     this._slides.adiciona(imagem)
                 ))
-            .catch(erro => this._exibeErro(erro));
+            .catch(error => this._exibeErro(error));
 
         this._initMap();
         this._initGrafico();
@@ -59,11 +59,6 @@ class EditoriaController {
             this._noticias.ordena(criterio);
     }
 
-    filtra(event) {
-        let campo = event.target.value;
-        this._noticias.filtra(campo);
-    }
-
     // Mapa
     _initMap() {
 
@@ -80,15 +75,6 @@ class EditoriaController {
             map: map,
             icon: image
         });
-    }
-    slideNext() {
-        this._slides.next();
-    }
-    slidePrev() {
-        this._slides.prev();
-    }
-    slideTo(index) {
-        this._slides.slideTo(index);
     }
 
     /**
@@ -143,8 +129,8 @@ class EditoriaController {
     }
 }
 
-let editoriaController = new EditoriaController();
+let app = new App();
 
-export function currentInstance() {
-    return editoriaController;
+export default function () {
+    return app;
 }

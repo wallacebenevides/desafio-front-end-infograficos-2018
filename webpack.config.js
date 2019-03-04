@@ -64,7 +64,7 @@ plugins.push(new webpack.DefinePlugin({ SERVICE_URL }));
 
 module.exports = {
     entry: {
-        app: './src/app.js',
+        app: './src/main.js',
         vendor: ['reflect-metadata']
     },
     output: {

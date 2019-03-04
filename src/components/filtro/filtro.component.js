@@ -1,8 +1,8 @@
-import { View } from './View.js';
+import { Component } from '../component';
 import { Bind } from "../../util/Bind";
 import { List } from "../../util/List";
 
-export class FiltroView extends View {
+export class FiltroComponent extends Component {
 
     constructor(_parentElement, noticias) {
         super(_parentElement);
@@ -33,7 +33,7 @@ export class FiltroView extends View {
         this._noticias.filtra(campo);
     }
 
-    template(model) {
+    render(model) {
         return `
                 <label for="filtrar">Filtrar Por:</label>
                      <select (change)="filtra(event)" name="filtrar"  class="campo">

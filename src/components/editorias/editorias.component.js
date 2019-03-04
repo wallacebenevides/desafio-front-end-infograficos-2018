@@ -1,22 +1,20 @@
-import { View } from './View.js';
+import { Component } from '../component';
 import { DateConverter } from '../../util/dateHelpers';
 import { Bind } from "../../util/Bind";
-import { Noticias } from "../../domain/editoria/Noticias";
-import "../../util/arrayHelpers";
+import { Noticias } from "./editoria/noticias";
 
-export class EditoriasView extends View {
-
+export class EditoriasComponent extends Component {
     constructor(_parentElement) {
         super(_parentElement);
-        this.slide = new Bind(
+        this._editoria = new Bind(
             new Noticias(),
             this,
             'esvazia', 'adiciona', 'ordena', 'filtra'
         );
-        return this.slide;
+        return this._editoria;
     }
 
-    template(model) {
+    render(model) {
         if (!model.noticias) return;
         //sconsole.log(model.noticias)
         return model.noticias.map(noticia =>

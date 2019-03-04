@@ -7,7 +7,6 @@ export class Noticias {
         //Object.freeze(this);
     }
 
-
     adiciona(noticia) {
         this._noticias.push(noticia);
     }
@@ -29,6 +28,3 @@ export class Noticias {
         return [].concat(this._noticias);
     }
 }
-
-export const ordenaRecentes = (a, b) => b.data - a.data;
-export const ordenaAntigas = (a, b) => b.data - a.data;

@@ -1,5 +1,5 @@
-import { ApplicationException, HttpService } from '../../util/index';
-import { resolveEditoriaAPI, ordenaRecentes } from "../index";
+import { ApplicationException, HttpService, normalizaData } from '../../util/index';
+import { Noticia } from "./editoria/noticia";
 import "../../util/arrayHelpers";
 
 const NOTICIAS_URL = "assets/JSON/noticias.json";
@@ -47,6 +47,24 @@ export class EditoriaService {
                 });
 
     }
-
-
 }
+
+const resolveNoticiaAPI = (editoria) => (noticia) => {
+    return new Noticia(
+        normalizaData(noticia['Data de publicação']),
+        noticia['Foto'],
+        noticia['Texto'],
+        noticia['Título'],
+        editoria
+
+    )
+}
+
+const resolveEditoriaAPI = (editoria) => {
+    return editoria['Notícias']
+        .map(resolveNoticiaAPI(editoria['Editoria']))
+}
+
+
+const ordenaRecentes = (a, b) => b.data - a.data;
+const ordenaAntigas = (a, b) => b.data - a.data;

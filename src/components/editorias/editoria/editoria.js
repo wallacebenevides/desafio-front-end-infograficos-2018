@@ -1,6 +1,4 @@
-import { obrigatorio } from '../../util/index.js';
-import { resolveNoticiaAPI } from "./Noticia";
-
+import { obrigatorio } from '../../../util/index';
 
 export class Editoria {
 
@@ -28,9 +26,4 @@ export class Editoria {
 
         return this._noticias;
     }
-}
-
-export const resolveEditoriaAPI = (editoria) => {
-    return editoria['Notícias']
-        .map(resolveNoticiaAPI(editoria['Editoria']))
 }

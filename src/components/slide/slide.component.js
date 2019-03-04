@@ -1,9 +1,8 @@
-import { View } from './View.js';
-import { currentInstance } from "../../controllers/EditoriaController";
+import { Component } from '../component';
 import { Bind } from "../../util/Bind";
-import { Slides } from "../models/Slides";
+import { Slides } from "./slides";
 
-export class SlideView extends View {
+export class SlideComponent extends Component {
 
     constructor(_parentElement) {
         super(_parentElement);
@@ -13,22 +12,6 @@ export class SlideView extends View {
             'esvazia', 'adiciona', 'next', 'prev', 'slideTo'
         );
         return this._slide;
-
-        /* elemento.addEventListener('click', (event) => {
-            let target = event.target;
-
-            //Marcador
-            if (target.nodeName == 'LI') {
-                let index = target.getAttribute("data-index");
-                currentInstance().slideTo(index);
-            }
-            //Setas
-            let direcao = target.getAttribute("data-direcao");
-            if (direcao === 'next')
-                currentInstance().slideNext();
-            if (direcao === 'prev')
-                currentInstance().slidePrev();
-        }); */
     }
 
     slideNext() {
@@ -41,7 +24,7 @@ export class SlideView extends View {
         this._slide.slideTo(index);
     }
 
-    template(slides) {
+    render(slides) {
 
         return slides.imagens.map((foto, i) =>
             `

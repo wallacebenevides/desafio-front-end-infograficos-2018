@@ -1,4 +1,4 @@
-import { obrigatorio, normalizaData } from '../../util/index';
+import { obrigatorio } from '../../../util/index';
 
 export class Noticia {
 
@@ -34,15 +34,4 @@ export class Noticia {
     get editoria() {
         return this._editoria;
     }
-}
-
-export const resolveNoticiaAPI = (editoria) => (noticia) => {
-
-    return new Noticia(
-        normalizaData(noticia['Data de publicação']),
-        noticia['Foto'],
-        noticia['Texto'],
-        noticia['Título'],
-        editoria
-    )
 }

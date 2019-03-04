@@ -1,8 +1,8 @@
-import { View } from './View.js';
+import { Component } from '../component';
 
-export class MensagemView extends View {
+export class MensagemComponent extends Component {
 
-    template(model) {
+    render(model) {
 
         return model.texto
             ? `<p class="alert alert-info">${model.texto}</p>`
