@@ -1,6 +1,7 @@
 import { Component } from '../component';
 import { Bind } from "../../util/Bind";
 import { Slides } from "./slides";
+import './slide.scss';
 
 export class SlideComponent extends Component {
 

@@ -2,6 +2,7 @@ import { Component } from '../component';
 import { DateConverter } from '../../util/dateHelpers';
 import { Bind } from "../../util/Bind";
 import { Noticias } from "./editoria/noticias";
+import "./editoriais.scss";
 
 export class EditoriasComponent extends Component {
     constructor(_parentElement) {

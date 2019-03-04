@@ -24,9 +24,9 @@ plugins.push(new HtmlWepackPlugin({
 
 plugins.push(
     new CopyWebpackPlugin([
-    {from:'assets/img/noticias/',to:'assets/noticias/'},
-    {from:'assets/img/slide/',to:'assets/slide/'},
-    {from: 'assets/JSON/', to: 'assets/JSON/'}
+        { from: 'src/assets/img/noticias/', to: 'assets/noticias/' },
+        { from: 'src/assets/img/slide/', to: 'assets/slide/' },
+        { from: 'src/assets/JSON/', to: 'assets/JSON/' }
     ])
 )
 
@@ -72,7 +72,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     module: [
-        './assets/img'
+        './src/assets/img'
     ],
     module: {
         rules: [

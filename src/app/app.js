@@ -1,6 +1,8 @@
 import { EditoriaService } from "../components/editorias/editoria.service";
 import { EditoriasComponent, FiltroComponent, SlideComponent } from '../components/index';
 
+import "./app.scss";
+
 class App {
     constructor() {
         let $ = document.querySelector.bind(document);

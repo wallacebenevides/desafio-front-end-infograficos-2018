@@ -1,7 +1,7 @@
 //const json = require('./noticias.json');
-import '../assets/JSON/noticias.json';
-import './style';//carrega os arquivos de folha de estilo
-import App from "./app/App";
+import './assets/JSON/noticias.json';
+import 'reset-css/reset.css';
+import App from "./app/app";
 var app = App();
 
 var oderna = app.ordena.bind(app);

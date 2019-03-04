@@ -1,3 +1,6 @@
+@import "../../style/variaveis";
+@import "../../style/mixins";
+
 .editorias {        
     padding: 16px;
     padding-bottom: 5em;
@@ -40,7 +43,7 @@
                     content: "";
                     height: 31px;
                     width: 27px;
-                    background: #211f1f url("../assets/img/seta-baixo.png") no-repeat 50% 50%;
+                    background: #211f1f url("../../assets/img/seta-baixo.png") no-repeat 50% 50%;
                     display: inline-block;
                     vertical-align: middle;
                     position: absolute;
