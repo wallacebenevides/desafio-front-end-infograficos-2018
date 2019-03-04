@@ -1,6 +1,5 @@
-import { Noticias, EditoriaService } from "../domain/index";
-import { EditoriasView, SlideView, FiltroView, Slides } from '../ui/index';
-import { List, Bind } from "../util/index";
+import { EditoriaService } from "../domain/index";
+import { EditoriasView, SlideView, FiltroView } from '../ui/index';
 
 class EditoriaController {
     constructor() {
@@ -8,23 +7,11 @@ class EditoriaController {
 
         this._editoriaService = new EditoriaService()
 
-        this._noticias = new Bind(
-            new Noticias(),
-            new EditoriasView($("#editoriasView")),
-            'esvazia', 'adiciona', 'ordena', 'filtra'
-        );
+        this._noticias = new EditoriasView($("#editoriasView"));
 
-        this._slides = new Bind(
-            new Slides(),
-            new SlideView($("#slideView")),
-            'esvazia', 'adiciona', 'next', 'prev', 'slideTo'
-        );
+        this._slides = new SlideView($("#slideView"));
 
-        this._filtroList = new Bind(
-            new List(),
-            new FiltroView($("#filtrar")),
-            'adiciona'
-        );
+        this._filtroList = new FiltroView($("#filtrar"), this._noticias);
 
         /* this._mensagem = new Bind(
             new Mensagem(),
@@ -68,16 +55,13 @@ class EditoriaController {
         if ((campo === 'antigas'))
             criterio = (a, b) => a.data - b.data;
 
-        console.log(campo)
         if (criterio)
             this._noticias.ordena(criterio);
-
     }
 
     filtra(event) {
         let campo = event.target.value;
         this._noticias.filtra(campo);
-
     }
 
     // Mapa

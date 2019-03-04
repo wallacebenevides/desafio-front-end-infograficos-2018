@@ -1,11 +1,20 @@
 import { View } from './View.js';
 import { currentInstance } from "../../controllers/EditoriaController";
+import { Bind } from "../../util/Bind";
+import { Slides } from "../models/Slides";
 
 export class SlideView extends View {
 
-    constructor(elemento) {
-        super(elemento);
-        elemento.addEventListener('click', (event) => {
+    constructor(_parentElement) {
+        super(_parentElement);
+        this._slide = new Bind(
+            new Slides(),
+            this,
+            'esvazia', 'adiciona', 'next', 'prev', 'slideTo'
+        );
+        return this._slide;
+
+        /* elemento.addEventListener('click', (event) => {
             let target = event.target;
 
             //Marcador
@@ -19,7 +28,17 @@ export class SlideView extends View {
                 currentInstance().slideNext();
             if (direcao === 'prev')
                 currentInstance().slidePrev();
-        });
+        }); */
+    }
+
+    slideNext() {
+        this._slide.next();
+    }
+    slidePrev() {
+        this._slide.prev();
+    }
+    slideTo(index) {
+        this._slide.slideTo(index);
     }
 
     template(slides) {
@@ -28,17 +47,17 @@ export class SlideView extends View {
             `
             <div data-index="${i}"  class="slide__content">
                 <div class="slide__item ${slides.slideIndex == i ? "active" : ""}">
-                <img src="./assets/slide/${foto}"/>
+                    <img src="./assets/slide/${foto}"/>
                 </div>
             </div>
             `).join('') +
             `
-            <a data-direcao="prev" class="prev">❮</a>
-            <a data-direcao="next" class="next">❯</a>            
+            <a data-direcao="prev" (click)="slidePrev()" class="prev">❮</a>
+            <a data-direcao="next" (click)="slideNext()" class="next">❯</a>            
             <div class="slide__pagination">
                 <ol>
                     ${slides.imagens.map((foto, i) =>
-                `<li data-index=" ${i}" class=${slides.slideIndex == i ? "'active'" : ""} ></li>`
+                `<li data-index=" ${i}" (click)="slideTo(${i})" class=${slides.slideIndex == i ? "'active'" : ""} ></li>`
             ).join('')}
                 </ol>
             </div >

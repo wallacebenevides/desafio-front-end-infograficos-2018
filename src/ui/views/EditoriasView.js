@@ -1,17 +1,19 @@
 import { View } from './View.js';
 import { DateConverter } from '../../util/dateHelpers';
+import { Bind } from "../../util/Bind";
+import { Noticias } from "../../domain/editoria/Noticias";
 import "../../util/arrayHelpers";
 
 export class EditoriasView extends View {
 
-
-    constructor(elemento) {
-        super(elemento);
-        console.log(elemento);
-        /* elemento.addEventListener('click', function(event) {
-            if (event.target.nodeName == 'TH')
-                currentInstance().ordena(event.target.textContent.toLowerCase());
-        }); */
+    constructor(_parentElement) {
+        super(_parentElement);
+        this.slide = new Bind(
+            new Noticias(),
+            this,
+            'esvazia', 'adiciona', 'ordena', 'filtra'
+        );
+        return this.slide;
     }
 
     template(model) {
