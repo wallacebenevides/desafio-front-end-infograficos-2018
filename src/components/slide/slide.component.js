@@ -31,7 +31,7 @@ export class SlideComponent extends Component {
             `
             <div data-index="${i}"  class="slide__content">
                 <div class="slide__item ${slides.slideIndex == i ? "active" : ""}">
-                    <img src="./assets/slide/${foto}"/>
+                    <img src="assets/img/slide/${foto}"/>
                 </div>
             </div>
             `).join('') +

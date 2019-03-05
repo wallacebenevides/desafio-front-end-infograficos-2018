@@ -26,7 +26,7 @@ export class EditoriasComponent extends Component {
                             <span class="item__header--editoria">${noticia.editoria}</span>
                         </div>
                         <div class="noticia__item-img">
-                            <img src="assets/noticias/${noticia.foto}">
+                            <img src="assets/img/noticias/${noticia.foto}">
                         </div>
                         <h2 class="noticia__item--titulo">${noticia.titulo}</h2>
                         <div class="noticia__item--conteudo">

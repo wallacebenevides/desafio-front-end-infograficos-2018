@@ -36,7 +36,7 @@ export class Component {
             }); */
         }
 
-        events.forEach((value, key) => console.log(value, key))
+        // events.forEach((value, key) => console.log(value, key))
         if (events.size) {
             // console.log(template);
             let nodeList = htmlToElements(template);

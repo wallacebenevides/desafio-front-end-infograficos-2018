@@ -50,6 +50,7 @@ class App {
 
 
     ordena(event) {
+        event.preventDefault();
         let campo = event.target.value;
         let criterio;
         if (campo === 'recentes')
