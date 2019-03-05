@@ -24,9 +24,7 @@ plugins.push(new HtmlWepackPlugin({
 
 plugins.push(
     new CopyWebpackPlugin([
-        { from: 'src/assets/img/noticias/', to: 'assets/noticias/' },
-        { from: 'src/assets/img/slide/', to: 'assets/slide/' },
-        { from: 'src/assets/JSON/', to: 'assets/JSON/' }
+        { from: 'src/assets/', to: 'assets/' }
     ])
 )
 
@@ -38,12 +36,13 @@ plugins.push(new webpack.optimize.CommonsChunkPlugin({
     filename: 'vendor.bundle.js'
 
 }));
+const ENV = process.env.NODE_ENV;
 
-let SERVICE_URL = JSON.stringify('http://localhost:3000');
+const { api } = require(`./config/config-${ENV}.json`);
 
-if (process.env.NODE_ENV == 'production') {
+plugins.push(new webpack.DefinePlugin({ SERVICE_URL: JSON.stringify(api) }));
 
-    SERVICE_URL = JSON.stringify('http://endereco-de-prod');
+if (ENV == 'prod') {
 
     plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
 
@@ -52,6 +51,8 @@ if (process.env.NODE_ENV == 'production') {
     plugins.push(new optimizeCSSAssetsPlugin({
         cssProcessor: require('cssnano'),
         cssProcessorOptions: {
+            autoprefixer: true,
+            discardUnused: true,
             discardComments: {
                 removeAll: true
             }
@@ -60,7 +61,6 @@ if (process.env.NODE_ENV == 'production') {
     }));
 }
 
-plugins.push(new webpack.DefinePlugin({ SERVICE_URL }));
 
 module.exports = {
     entry: {
