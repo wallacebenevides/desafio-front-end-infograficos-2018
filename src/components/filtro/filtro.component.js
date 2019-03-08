@@ -1,11 +1,12 @@
 import { Component } from '../component';
 import { Bind } from "../../util/Bind";
 import { List } from "../../util/List";
+import { EventEmitter } from '../../util/event-emitter';
 
 export class FiltroComponent extends Component {
 
-    constructor(_parentElement, noticias) {
-        super(_parentElement);
+    constructor(parentElement, noticias) {
+        super(parentElement);
         this._noticias = noticias;
         this._filtro = new Bind(
             new List(),
@@ -25,8 +26,11 @@ export class FiltroComponent extends Component {
 
         if (criterio)
             this._noticias.ordena(criterio);
-    }
 
+        this.onchange = new EventEmitter()
+
+        this.onchange.emit(campo);
+    }
 
     filtra(event) {
         let campo = event.target.value;
@@ -34,13 +38,28 @@ export class FiltroComponent extends Component {
     }
 
     render(model) {
+
+        const filtro = `
+        <label for="filtrar">Filtrar Por:</label>
+            <select (change)="filtra(event)" name="filtrar"  class="campo">
+                <option value="" selected>Editoria</option>
+                ${model.itens.map(item => `<option value="${item}">${item}</option>`).join('')}
+            </select>
+        `;
         return `
-                <label for="filtrar">Filtrar Por:</label>
-                     <select (change)="filtra(event)" name="filtrar"  class="campo">
-                        <option value="" selected>Editoria</option>
-                        ${model.itens.map(item =>
-            `<option value="${item}">${item}</option>`).join('')}
-                    </select>
-                    `
+        <form action="" class="filtro">
+            <div class="filtro__item">
+                <label for="ordenar">Ordernar Por:</label>
+                <select name="ordenar" id="ordenar" class="campo">
+                    <option value="recentes">Recentes</option>
+                    <option value="antigas">Antigas</option>
+                </select>
+            </div>
+            <div id="filtrar" class="filtro__item">
+                ${filtro}
+            </div>
+        </form>
+        `;
+
     }
 }

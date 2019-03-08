@@ -1,7 +1,7 @@
 @import "../../style/variaveis";
 @import "../../style/mixins";
 
-.editorias {        
+editorias {
     padding: 16px;
     padding-bottom: 5em;
     overflow: hidden;
@@ -15,14 +15,14 @@
             .filtro {
                 display: flex;
             }
-            .filtro__item {                                       
+            .filtro__item {
                 text-align: right;
                 margin-right: 27px;
-                margin-left: 10px;                    
+                margin-left: 10px;
                 label {
                     font-family: "Verdana";
                     font-size: 15px;
-                    color: #7D7575; 
+                    color: #7D7575;
                 }
                 .campo {
                     display: inline-block;
@@ -34,7 +34,7 @@
                     font-weight: bold;
                     color: #fff;
                     border: 0;
-                    background: #211f1f; 
+                    background: #211f1f;
                     &:active, &:focus {
                         outline: 0;
                     }
@@ -47,10 +47,10 @@
                     display: inline-block;
                     vertical-align: middle;
                     position: absolute;
-                    pointer-events: none; 
+                    pointer-events: none;
                 }
-            } 
-            
+            }
+
         }
         @include mq('tablet-small') {
             display: flex;
@@ -60,21 +60,21 @@
     .noticias {
         display: flex;
         flex-wrap: wrap;
-        @include mq('tablet') {            
+        @include mq('tablet') {
             justify-content: space-around;
         }
-        @include mq('tablet-wide') {            
-            justify-content: space-between;            
+        @include mq('tablet-wide') {
+            justify-content: space-between;
         }
         .noticia__content {
             align-items: center;
             clear: both;
             height: auto;
             margin: auto;
-            @include mq('tablet-small') {            
+            @include mq('tablet-small') {
                 margin: 1em;
-            }           
-            @include mq('tablet-wide') {            
+            }
+            @include mq('tablet-wide') {
                     &:nth-child(3n){
                         margin-right: 0;
                     }
@@ -110,7 +110,7 @@
                 .noticia__item--conteudo {
                     margin-bottom: .3em;
                     p {
-                        margin-bottom: .3em; 
+                        margin-bottom: .3em;
                     }
                     a {
                         font-size: 1.3em;
@@ -122,4 +122,4 @@
     }
 
 }
-          
+

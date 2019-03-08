@@ -1,3 +1,5 @@
+@import '../../style/mixins.scss';
+
 footer[role="footer"] {
     min-height: 30px;
     background: #1d1414;
@@ -8,7 +10,7 @@ footer[role="footer"] {
       font-family: "Verdana";
       font-weight: bold;
       font-size: 18px;
-      @include mq('tablet-wide') {            
+      @include mq('tablet-wide') {
         text-align: justify;
       }
     }

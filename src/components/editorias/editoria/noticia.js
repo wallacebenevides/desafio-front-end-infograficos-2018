@@ -1,13 +1,13 @@
-import { obrigatorio } from '../../../util/index';
+import { required } from '../../../util/index';
 
 export class Noticia {
 
     constructor(
-        _data = obrigatorio('data'),
-        _foto = obrigatorio('foto'),
-        _texto = obrigatorio('texto'),
-        _titulo = obrigatorio('titulo'),
-        _editoria = obrigatorio('editoria')
+        _data = required('data'),
+        _foto = required('foto'),
+        _texto = required('texto'),
+        _titulo = required('titulo'),
+        _editoria = required('editoria')
     ) {
         Object.assign(this, { _data, _foto, _texto, _titulo, _editoria });
         Object.freeze(this);

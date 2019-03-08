@@ -40,7 +40,10 @@ const ENV = process.env.NODE_ENV;
 
 const { api } = require(`./config/config-${ENV}.json`);
 
-plugins.push(new webpack.DefinePlugin({ SERVICE_URL: JSON.stringify(api) }));
+plugins.push(new webpack.DefinePlugin({
+    SERVICE_URL: JSON.stringify(api),
+    ENV: JSON.stringify(ENV)
+}));
 
 if (ENV == 'prod') {
 

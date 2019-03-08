@@ -1,11 +1,11 @@
-import { obrigatorio } from '../../../util/index';
+import { required } from '../../../util/index';
 
 export class Editoria {
 
     constructor(
-        _nome = obrigatorio('nome'),
-        _id = obrigatorio('id'),
-        _noticias = obrigatorio('noticias')) {
+        _nome = required('nome'),
+        _id = required('id'),
+        _noticias = required('noticias')) {
 
         Object.assign(this, { _nome, _id })
         this._noticias = [].concat(_noticias);

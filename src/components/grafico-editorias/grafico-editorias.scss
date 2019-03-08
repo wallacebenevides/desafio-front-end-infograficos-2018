@@ -1,4 +1,6 @@
-.grafico-editoria {
+@import '../../style/mixins.scss';
+
+grafico-editorias {
   max-width: 1400px;
   border-top: 2px dashed rgba(125, 117, 117, 0.57);
   border-bottom: 2px dashed rgba(125, 117, 117, 0.57);
@@ -13,7 +15,7 @@
     //transform: rotate(-90deg);
     margin: auto;
     @include mq('tablet-wide') {
-      margin: unset;    
+      margin: unset;
   }
     h2 {
       margin-top: 10px;
@@ -26,13 +28,13 @@
       g {
         rect {
           fill: #1f1b1b;
-          stroke: white; 
+          stroke: white;
         }
         .text {
           font-family: verdana;
           font-size: 14px;
           stroke: #fff;
-          fill: #fff; 
+          fill: #fff;
         }
         .text + .text {
           stroke: #1f1b1b;
@@ -42,7 +44,7 @@
           rect {
             fill: #d93731;
           }
-          .text {     
+          .text {
             stroke: #1f1b1b;
             fill: #1f1b1b;
           }
@@ -54,16 +56,16 @@
       }
     }
   }
-  .conteudo {  
-    margin: 0 auto;   
+  .conteudo {
+    margin: 0 auto;
     width: min-content;
     @include mq('tablet-wide') {
       margin: unset;
-      width: unset; 
+      width: unset;
   }
     h2 {
       font-size: 1.5em;
-      font-weight: bold;      
+      font-weight: bold;
     }
     p {
       font-weight: bold;
@@ -76,13 +78,11 @@
       font-family: "Verdana";
       font-size: 16px;
       color: #2c3339;
-      @include mq('tablet-wide') {        
+      @include mq('tablet-wide') {
         &:nth-of-type(2n){
           padding-left: 31px;
         }
       }
     }
-    
   }
-
 }

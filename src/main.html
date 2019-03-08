@@ -12,149 +12,21 @@
 <body>
 
     <header role="header">
-        <div class="header__container limit">
-            <div class="logo">
-                <a href="#">
-                    <h1><img src="<%=require('./assets/img/logo-marca.png')%>" alt="Minuto News"></h1>
-                </a>
-            </div><!-- /.logo -->
-
-            <nav role="navegacao">
-                <ul class="menu">
-                    <li class="menu__item"><a href="#" class="menu__link">Início</a></li>
-                    <li class="menu__item sub-menu"><a href="#" class="menu__link">Brasil</a>
-                        <ul class="sub-menu__container">
-                            <li class="sub-menu__item"><a href="#">SubMenu 01</a></li>
-                            <li class="sub-menu__item"><a href="#">SubMenu 02</a></li>
-                            <li class="sub-menu__item"><a href="#">SubMenu 03</a></li>
-                            <li class="sub-menu__item"><a href="#">SubMenu 04</a></li>
-                            <li class="sub-menu__item"><a href="#">SubMenu 05</a></li>
-                        </ul><!-- /.sub-menu__container -->
-                    </li><!-- /.sub-menu -->
-                    <li class="menu__item"><a href="#" class="menu__link">Mundo</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">Blogs</a></li>
-                    <li class="menu__item"><a href="#" class="menu__link">Assine</a></li>
-                </ul><!-- /ul -->
-            </nav><!-- /nav -->
-        </div>
     </header>
 
     <main role="main">
-        <div class="slide limit" id="slideView">
-
-        </div><!-- /.slider -->
-        <div class="editorias">
-            <div class="limit">
-                <div class="editorias__header">
-                    <div class="header__titulo">
-                        <h2 class="font-1">Editorias</h2>
-                    </div><!-- /.titulo -->
-                    <div class="header__filtro">
-                        <form action="" class="filtro">
-                            <div class="filtro__item">
-                                <label for="ordenar">Ordernar Por:</label>
-                                <select name="ordenar" id="ordenar" class="campo">
-                                    <option value="recentes">Recentes</option>
-                                    <option value="antigas">Antigas</option>
-                                </select>
-                            </div><!-- filtro__item -->
-                            <div id="filtrar" class="filtro__item">
-                            </div><!-- filtro__item -->
-                        </form><!-- /form -->
-                    </div><!-- /.noticia__header--filtro -->
-                </div><!-- /.editorias_header -->
-                <div class="noticias" id="editoriasView">
-                </div><!-- /.limit -->
-            </div><!-- /.noticia -->
-        </div>
-        <div class="grafico-editoria">
-            <div class="limit">
-                <div class="header__titulo">
-                    <h2 class="font-1">Editorias mais Acessados</h2>
-                </div>
-                <div class="grafico-editoria-content">
-                    <div class="grafico">
-                        <svg class="grafico__item"></svg>
-                    </div>
-
-                    <div class="conteudo">
-                        <div class="test">
-                            <h2>Título Aqui</h2>
-                            <p>
-                                Mussum Ipsum, cacilds vidis litro abertis.
-                                Sapien in monti palavris qui num significa
-                                nadis i pareci latim. Mauris nec dolor in
-                                eros commodo tempor. Aenean aliquam molestie
-                                leo, vitae iaculis nisl.
-                            </p>
-                            <p>Mussum Ipsum, cacilds vidis litro abertis.
-                                Sapien in monti palavris qui num significa
-                                nadis i pareci latim. Mauris nec dolor in
-                                eros commodo tempor. Aenean aliquam molestie
-                                leo, vitae iaculis nisl.</p>
-                        </div>
-                        <!--test-->
-                    </div><!-- /.conteudo -->
-                </div>
-
-            </div>
-        </div>
-        <!--/.grafico__editoria-->
-        <div class="localizacao limit">
-
-        </div><!-- /.localizacao -->
-        <div class="contato">
-
-            <div class=" box__contato">
-                <div class="enderecos">
-                    <div class="endereco__item">
-                        <h2 class="font-1">Entre em contato</h2>
-                        <h3>Onde nos achar</h3>
-                        <p>Rua dos Afeneiros, número 4 <br />00-91102 <br />little Whitning <br />Londres/
-                            Inglatera</p>
-                    </div>
-                    <br />
-                    <div class="endereco__item">
-
-                        <p>(21) 4000-1234 <br />(21) 4000-1234</p>
-                        <br />
-                        <small>contato@minutonews.com.br</small>
-
-                    </div>
-                    <div class="endereco__item">
-                        <p>Aberto de segunda a sexta das 09h as 19h</p>
-                    </div>
-                </div><!-- enderecos -->
-            </div>
-
-
-            <div class=box__formulario>
-                <div class="formulario">
-                    <h5>Mande uma mensagem</h5>
-                    <form action="" class="form">
-                        <label for="">Nome:</label>
-                        <input type="text" name="nome" autocomplete="on">
-
-                        <label for="">Email:</label>
-                        <input type="email" name="email" autocomplete="on">
-
-                        <label for="">Mensagem:</label>
-                        <textarea name="mensagem" autocomplete="on" autocorrect="on" spellcheck="true" id="" cols="30"
-                            rows="10"></textarea>
-                        <button>Enviar</button>
-                    </form>
-                </div><!-- /.formulário -->
-
-            </div>
-
-        </div><!-- contato -->
-
+        <slide class="limit">
+        </slide><!-- /.slider -->
+        <editorias>
+        </editorias>
+        <grafico-editorias class="grafico-editorias">
+        </grafico-editorias>
+        <localizacao class="limit">
+        </localizacao>
+        <contato>
+        </contato>
     </main>
-
     <footer role="footer">
-        <div class="footer limit">
-            <p>&copy; Entrevista | Front End </p>
-        </div><!-- /.footer -->
     </footer><!-- /footer-->
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_iq4C2tjQJGXtAz1n6mE1-ROVADsWzk0" type="text/javascript"></script>

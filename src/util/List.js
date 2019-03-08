@@ -1,11 +1,9 @@
 export class List {
 
     constructor() {
-
         this._itens = [];
         Object.freeze(this);
     }
-
 
     adiciona(item) {
         this._itens.push(item);
@@ -16,7 +14,6 @@ export class List {
     }
 
     get itens() {
-
         return [].concat(this._itens);
     }
 }

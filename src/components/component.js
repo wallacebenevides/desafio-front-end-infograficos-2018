@@ -1,15 +1,18 @@
-import { htmlToElements } from "../util/domHelpers";
+import { htmlToElements } from "../util/helpers/domHelpers";
 
 const ATTRIBUTE_NAME = 'data-events';
 
 export class Component {
 
-    constructor(_parentElement) {
-        this._parentElement = _parentElement;
-        this.nodeId = 0;
+    constructor(parentElement) {
+        this._parentElement = parentElement;
+        this._didMount = false;
     }
 
     update(model) {
+        // ciclo de vida do component
+        this.componentWillMount();
+
         let template = this.render(model);
         let events = new Map();
         let pattern = /\(([a-z]+)\)=["|']([a-zA-Z]+)\((\w*)\)["|']/;
@@ -91,7 +94,27 @@ export class Component {
 
         }
         this._parentElement.innerHTML = template;
+        // ciclo de vida do component
+        if (!this._didMount) {
+            this.componentDidMount();
+            this._didMount = true;
+        }
     }
+
+    /**
+     * Esse metódo será executado antes da criação do componente
+     */
+    componentWillMount() { }
+
+    /**
+     * Esse metódo será executado apenas uma vez após a criação do componente
+     */
+    componentDidMount() { }
+
+    /**
+     * Esse metódo será executado toda vez que houver mudancas no componente
+     */
+    componentDidMount() { }
 
     render(model) {
 

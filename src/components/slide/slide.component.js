@@ -5,8 +5,9 @@ import './slide.scss';
 
 export class SlideComponent extends Component {
 
-    constructor(_parentElement) {
-        super(_parentElement);
+    constructor(parentElement) {
+        super(parentElement);
+        console.log(parentElement);
         this._slide = new Bind(
             new Slides(),
             this,
@@ -37,7 +38,7 @@ export class SlideComponent extends Component {
             `).join('') +
             `
             <a data-direcao="prev" (click)="slidePrev()" class="prev">❮</a>
-            <a data-direcao="next" (click)="slideNext()" class="next">❯</a>            
+            <a data-direcao="next" (click)="slideNext()" class="next">❯</a>
             <div class="slide__pagination">
                 <ol>
                     ${slides.imagens.map((foto, i) =>
