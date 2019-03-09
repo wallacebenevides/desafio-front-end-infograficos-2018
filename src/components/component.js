@@ -1,11 +1,13 @@
 import { htmlToElements } from "../util/helpers/domHelpers";
+import { isFunction } from "../util/helpers/common-helpers";
 
 const ATTRIBUTE_NAME = 'data-events';
 
 export class Component {
 
-    constructor(parentElement) {
+    constructor(parentElement, doBeforeDidMount) {
         this._parentElement = parentElement;
+        this._doBeforeDidMount = doBeforeDidMount;
         this._didMount = false;
     }
 
@@ -93,12 +95,18 @@ export class Component {
             return;
 
         }
+        console.log(this._parentElement)
         this._parentElement.innerHTML = template;
+
         // ciclo de vida do component
         if (!this._didMount) {
+            if (isFunction(this._doBeforeDidMount)){
+                this._doBeforeDidMount();
+            }
             this.componentDidMount();
             this._didMount = true;
         }
+        this.componentChangeMount();
     }
 
     /**
@@ -114,7 +122,7 @@ export class Component {
     /**
      * Esse metódo será executado toda vez que houver mudancas no componente
      */
-    componentDidMount() { }
+    componentChangeMount() { }
 
     render(model) {
 

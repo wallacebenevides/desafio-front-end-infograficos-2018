@@ -1,40 +1,25 @@
 import { Component } from '../component';
 import { Bind } from "../../util/Bind";
 import { List } from "../../util/List";
-import { EventEmitter } from '../../util/event-emitter';
+import { SelectComponent } from '../select/select.component';
 
 export class FiltroComponent extends Component {
 
-    constructor(parentElement, noticias) {
-        super(parentElement);
-        this._noticias = noticias;
-        this._filtro = new Bind(
-            new List(),
-            this,
-            'adiciona'
-        );
-        return this._filtro;
+    constructor(parentElement) {
+        super(parentElement, () => {
+            this._noticias = noticias;
+            this._filtro = new Bind(
+                new List(),
+                this,
+                'adiciona'
+            );
+            return this._filtro;
+        });
     }
 
-    ordena(event) {
-        let campo = event.target.value;
-        let criterio;
-        if (campo === 'recentes')
-            criterio = (a, b) => b.data - a.data;
-        if ((campo === 'antigas'))
-            criterio = (a, b) => a.data - b.data;
-
-        if (criterio)
-            this._noticias.ordena(criterio);
-
-        this.onchange = new EventEmitter()
-
-        this.onchange.emit(campo);
-    }
-
-    filtra(event) {
-        let campo = event.target.value;
-        this._noticias.filtra(campo);
+    componentDidMount() {
+        this._selectEditorias = new SelectComponent(this._parentElement.querySelector('select-editorias'));
+        this._selectOrdem = new SelectComponent(this._parentElement.querySelector('select-ordem'));
     }
 
     render(model) {
@@ -50,7 +35,9 @@ export class FiltroComponent extends Component {
         <form action="" class="filtro">
             <div class="filtro__item">
                 <label for="ordenar">Ordernar Por:</label>
-                <select name="ordenar" id="ordenar" class="campo">
+                <select-editorias>
+                </select-editorias>
+                <select name="ordenar" class="campo">
                     <option value="recentes">Recentes</option>
                     <option value="antigas">Antigas</option>
                 </select>
@@ -60,6 +47,5 @@ export class FiltroComponent extends Component {
             </div>
         </form>
         `;
-
     }
 }
