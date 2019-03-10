@@ -17,7 +17,7 @@ export class Slides {
     }
 
     next() {
-        if (this._slideIndex === this._slides.length - 1) {
+        if (this._slideIndex == this._slides.length - 1) {
             this._slideIndex = 0;
             return;
         }

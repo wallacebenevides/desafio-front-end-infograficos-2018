@@ -8,8 +8,7 @@ export class ContatoComponent extends Component {
     }
 
     render() {
-        return `
-        <div class=" box__contato">
+        return `<div class=" box__contato">
                 <div class="enderecos">
                     <div class="endereco__item">
                         <h2 class="font-1">Entre em contato</h2>
@@ -44,7 +43,6 @@ export class ContatoComponent extends Component {
                     </form>
                 </div><!-- /.formulário -->
 
-            </div>
-        `;
+            </div>`;
     }
 }

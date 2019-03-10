@@ -8,36 +8,36 @@ import { SelectComponent } from '../select/select.component';
 
 export class EditoriasComponent extends Component {
     constructor(parentElement) {
-        super(
-            parentElement,
-            () => {
-            }
-            );
-            this._editorias = new Bind(
-                new Noticias(),
-                this,
-                'esvazia', 'adiciona', 'ordena', 'filtra'
-            );
-        }
+        super(parentElement);
+        this._editorias = new Bind(
+            new Noticias(),
+            this,
+            'setNoticias', 'adiciona', 'ordena', 'filtra'
+        );
+    }
 
     componentWillMount() {
+        Logger.log('componentWillMount');
         this._editoriaService = new EditoriaService();
-        console.log('componentWillMount');
     }
 
     async componentDidMount() {
-        Logger.info("componentDidMount")
+        Logger.log("componentDidMount")
 
         this._selectEditorias = new SelectComponent(this._parentElement.querySelector('select-editorias'), 'filtrar');
-        this._selectEditorias.onchange = event => this.ordena(event);
+        this._selectEditorias.onchange = event => this.filtra(event);
 
         this._selectOrdem = new SelectComponent(this._parentElement.querySelector('select-ordem'), 'ordenar');
+
         this._selectOrdem.onchange = event => this.ordena(event);
 
         try {
             let noticias = await this._editoriaService.obtemNoticias()
-            noticias.forEach(noticia => this._editorias.adiciona(noticia))
-            this._selectEditorias.options = this.getEditoriasName(noticias);
+            //noticias.forEach(noticia => this._editorias.adiciona(noticia))
+            this._editorias.setNoticias(noticias);
+            let options = this.getEditoriasName(noticias);
+            this._selectOrdem.options = ['Recentes', 'Antigas'];
+            this._selectEditorias.options = options
 
         } catch (error) {
             // TODO: exibe error ao usuário
@@ -45,48 +45,61 @@ export class EditoriasComponent extends Component {
         }
     }
 
+    componentChangeMount() {
+        Logger.info('componentChangeMount');
+
+        let selectOrdem = this._parentElement.querySelector('select-ordem');
+        selectOrdem && this._selectOrdem.updateParentElement(selectOrdem);
+
+        let selectEditorias = this._parentElement.querySelector('select-editorias');
+        selectEditorias && this._selectEditorias.updateParentElement(selectEditorias);
+    }
+
     ordena(event) {
         let campo = event.target.value;
         let criterio;
-        if (campo === 'recentes')
+        if (campo === 'Recentes')
             criterio = (a, b) => b.data - a.data;
-        if ((campo === 'antigas'))
+        if ((campo === 'Antigas'))
             criterio = (a, b) => a.data - b.data;
-
         if (criterio)
-            this._noticias.ordena(criterio);
+            this._editorias.ordena(criterio);
+
     }
 
     filtra(event) {
         let campo = event.target.value;
-        this._noticias.filtra(campo);
+        this._editorias.filtra(campo);
+
     }
 
     getEditoriasName(noticias) {
-        return noticias.map(e => e.editoria);
+        return noticias.reduce((prev, current) => {
+            return !prev.some(prevItem => prevItem === current.editoria) ? [...prev, current.editoria] : prev
+        }, ['Editoria']);
     }
 
     render(model) {
 
-        if (!model.noticias) return;
+        const noticias = model.noticias;
 
-        const filtro = `
-        <form action="" class="filtro">
-            <div class="filtro__item">
-                <label for="ordenar">Ordernar Por:</label>
-                <select-ordem>
-                </select-ordem>
-            </div>
-            <div id="filtrar" class="filtro__item">
-                <label for="filtrar">Filtrar Por:</label>
-                <select-editorias>
-                </select-editorias>
-            </div>
-        </form>
-        `;
+        if (!noticias) return;
+
+        const filtro = `<form action="" class="filtro">
+                            <div class="filtro__item">
+                                <label for="ordenar">Ordernar Por:</label>
+                                <select-ordem>
+                                </select-ordem>
+                            </div>
+                            <div id="filtrar" class="filtro__item">
+                                <label for="filtrar">Filtrar Por:</label>
+                                <select-editorias>
+                                </select-editorias>
+                            </div>
+                        </form>`;
 
 
-        const noticias = model.noticias.map(noticia =>
+        const noticiasTemp = noticias.map(noticia =>
             `<div class="noticia__content" >
             <div class="noticia__item">
                 <div class="noticia__item--header">
@@ -106,12 +119,10 @@ export class EditoriasComponent extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
-        `
+            </div>`
         ).join('');
 
-        return `
-            <div class="limit" >
+        return `<div class="limit" >
                 <div class="editorias__header">
                     <div class="header__titulo">
                         <h2 class="font-1">Editorias</h2>
@@ -119,10 +130,9 @@ export class EditoriasComponent extends Component {
                     ${filtro}
                 </div>
                 <div class="noticias">
-                    ${noticias}
+                    ${noticiasTemp}
                 </div>
-            </div >
-            `;
+            </div>`;
     }
 }
 

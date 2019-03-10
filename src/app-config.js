@@ -1,9 +1,12 @@
 // variaveis globais geradas pelo webpack
 export const API = SERVICE_URL;
+
 export const environment = {
     isDev: ENV === 'dev',
     isProd: ENV === 'prod'
 };
+
+export const APP_INFO = 'Infografico'
 
 export const UsuarioEndpoint = {
     PERFIL_USUARIO: "/usuario/perfil", //GET POST PUT

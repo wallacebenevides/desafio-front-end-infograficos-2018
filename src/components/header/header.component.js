@@ -8,8 +8,7 @@ export class HeaderComponent extends Component {
     }
 
     render() {
-        return `
-            <div class="header__container limit">
+        return `<div class="header__container limit">
                 <div class="logo">
                     <a href="#">
                         <h1><img src="../../assets/img/logo-marca.png" alt="Minuto News"></h1>
@@ -26,15 +25,14 @@ export class HeaderComponent extends Component {
                                 <li class="sub-menu__item"><a href="#">SubMenu 03</a></li>
                                 <li class="sub-menu__item"><a href="#">SubMenu 04</a></li>
                                 <li class="sub-menu__item"><a href="#">SubMenu 05</a></li>
-                            </ul><!-- /.sub-menu__container -->
-                        </li><!-- /.sub-menu -->
+                            </ul>
+                        </li>
                         <li class="menu__item"><a href="#" class="menu__link">Mundo</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">Blogs</a></li>
                         <li class="menu__item"><a href="#" class="menu__link">Assine</a></li>
-                    </ul><!-- /ul -->
-                </nav><!-- /nav -->
-            </div>
-        `;
+                    </ul>
+                </nav>
+            </div>`;
     }
 
 

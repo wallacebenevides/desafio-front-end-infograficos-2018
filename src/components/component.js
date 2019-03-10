@@ -5,15 +5,19 @@ const ATTRIBUTE_NAME = 'data-events';
 
 export class Component {
 
-    constructor(parentElement, doBeforeDidMount) {
+    constructor(parentElement) {
         this._parentElement = parentElement;
-        this._doBeforeDidMount = doBeforeDidMount;
         this._didMount = false;
+    }
+    updateParentElement(parentElement) {
+        this._parentElement = parentElement;
     }
 
     update(model) {
         // ciclo de vida do component
-        this.componentWillMount();
+        if (!this._didMount) {
+            this.componentWillMount();
+        }
 
         let template = this.render(model);
         let events = new Map();
@@ -42,34 +46,47 @@ export class Component {
         }
 
         // events.forEach((value, key) => console.log(value, key))
-        if (events.size) {
-            // console.log(template);
-            let nodeList = htmlToElements(template);
-            const addEvent = (node) => {
-                if (node.hasAttribute && node.hasAttribute(ATTRIBUTE_NAME)) {
-                    let key = node.getAttribute(ATTRIBUTE_NAME);
-                    node.removeAttribute(ATTRIBUTE_NAME);
-                    const { event, call, params } = events.get(key);
-                    node.addEventListener(event, (event) => {
-                        if (params === 'event') {
-                            return this[call](event);
-                        }
-                        this[call](params);
-                    });
-                }
+        // console.log(template);
+        let nodeList = htmlToElements(template);
+        const addEvent = (node) => {
+            if (node.hasAttribute && node.hasAttribute(ATTRIBUTE_NAME)) {
+                let key = node.getAttribute(ATTRIBUTE_NAME);
+                node.removeAttribute(ATTRIBUTE_NAME);
+                const { event, call, params } = events.get(key);
+                node.addEventListener(event, (event) => {
+                    if (params === 'event') {
+                        return this[call](event);
+                    }
+                    this[call](params);
+                });
             }
-
-            //console.log(nodeList);
+        }
+        const nodeIsText = (node) => {
+            return node.nodeName === '#text';
+        }
+        //console.log(nodeList);
+        const checkNodesChanges = (nodeList, parentElement) => {
             for (const node of nodeList) {
-                if (node.nodeName === '#text') continue;
+                if (nodeIsText(node)) {
+                    let childNode;
+                    for (const cNode of parentElement.childNodes) {
+                        if (nodeIsText(cNode) && cNode.textContent === node.textContent) {
+                            childNode = cNode;
+                            break;
+                        }
+                    }
+                    if (!childNode) {
+                        parentElement.appendChild(node);
+                    }
+                    continue;
+                };
 
                 addEvent(node);
                 node.querySelectorAll(`*[${ATTRIBUTE_NAME}]`)
                     .forEach(addEvent);
 
                 let childNode;
-
-                for (const cNode of this._parentElement.childNodes) {
+                for (const cNode of parentElement.childNodes) {
                     if (cNode.nodeType === node.nodeType
                         && cNode.nodeName === node.nodeName
                         && cNode.nodeValue === node.nodeValue
@@ -86,23 +103,19 @@ export class Component {
                     }
                 }
                 if (!childNode) {
-                    this._parentElement.appendChild(node);
+                    parentElement.appendChild(node);
                 } else if (!childNode.isEqualNode(node)) {
-                    this._parentElement.replaceChild(node, childNode);
+                    parentElement.replaceChild(node, childNode);
                 }
-
             }
-            return;
-
         }
-        console.log(this._parentElement)
-        this._parentElement.innerHTML = template;
-
+        if (!this._parentElement) {
+            console.log(template)
+        }
+        checkNodesChanges(nodeList, this._parentElement);
         // ciclo de vida do component
         if (!this._didMount) {
-            if (isFunction(this._doBeforeDidMount)){
-                this._doBeforeDidMount();
-            }
+            // ciclo de vida do component
             this.componentDidMount();
             this._didMount = true;
         }

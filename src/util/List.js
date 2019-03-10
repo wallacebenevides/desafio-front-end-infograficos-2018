@@ -1,8 +1,11 @@
-export class List {
+import { ModelComponent } from "./modelComponent";
+
+export class List extends ModelComponent {
 
     constructor() {
+        super();
         this._itens = [];
-        Object.freeze(this);
+        //Object.freeze(this);
     }
 
     adiciona(item) {

@@ -51,8 +51,7 @@ export class GraficoEditoriasComponent extends Component {
     }
 
     render(model) {
-        return `
-            <div class="limit">
+        return `<div class="limit">
                 <div class="header__titulo">
                     <h2 class="font-1">Editorias mais Acessados</h2>
                 </div>
@@ -77,10 +76,8 @@ export class GraficoEditoriasComponent extends Component {
                                 eros commodo tempor. Aenean aliquam molestie
                                 leo, vitae iaculis nisl.</p>
                         </div>
-                        <!--test-->
-                    </div><!-- /.conteudo -->
+                    </div>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
 }

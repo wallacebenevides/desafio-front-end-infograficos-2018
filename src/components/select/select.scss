@@ -1,0 +1,35 @@
+
+select-editorias, select-ordem {
+    text-align: right;
+    margin-right: 27px;
+    margin-left: 10px;
+    select {
+        &.campo {
+            display: inline-block;
+            padding: 8px 12px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #fff;
+            border: 0;
+            background: #211f1f;
+            &:active, &:focus {
+                outline: 0;
+            }
+        }
+    }
+    &:after {
+        content: "";
+        height: 31px;
+        width: 27px;
+        background: #211f1f url("../../assets/img/seta-baixo.png") no-repeat 50% 50%;
+        display: inline-block;
+        vertical-align: middle;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+        
+

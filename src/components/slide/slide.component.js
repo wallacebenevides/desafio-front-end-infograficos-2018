@@ -7,23 +7,36 @@ export class SlideComponent extends Component {
 
     constructor(parentElement) {
         super(parentElement);
-        console.log(parentElement);
         this._slide = new Bind(
             new Slides(),
             this,
             'esvazia', 'adiciona', 'next', 'prev', 'slideTo'
         );
+        this.initAutoSlide();
         return this._slide;
+    }
+
+    initAutoSlide() {
+       this._timer = setInterval(() => {
+        this._slide.next();
+        }, 3000);
+    }
+    refreshAutoSlide() {
+        clearInterval(this._timer);
+        this.initAutoSlide()
     }
 
     slideNext() {
         this._slide.next();
+        this.refreshAutoSlide();
     }
     slidePrev() {
         this._slide.prev();
+        this.refreshAutoSlide();
     }
     slideTo(index) {
         this._slide.slideTo(index);
+        this.refreshAutoSlide();
     }
 
     render(slides) {

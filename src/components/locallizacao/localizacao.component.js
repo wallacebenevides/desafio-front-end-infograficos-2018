@@ -7,7 +7,7 @@ export class LocalizacaoComponent extends Component {
         this.update()
     }
 
-     componentDidMount() {
+    componentDidMount() {
         var myLatLng = { lat: -25.363, lng: 131.044 };
         var elemento = document.querySelector("#localizacao-content");
         var map = new google.maps.Map(elemento, {
@@ -24,10 +24,8 @@ export class LocalizacaoComponent extends Component {
     }
 
     render() {
-        return `
-        <div id="localizacao-content" class="limit">
-        </div>
-        `;
+        return `<div id="localizacao-content" class="limit">
+        </div>`;
 
     }
 }

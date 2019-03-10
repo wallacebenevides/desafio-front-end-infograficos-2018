@@ -8,11 +8,9 @@ export class FooterComponent extends Component {
     }
 
     render() {
-        return `
-        <div class="footer limit">
+        return `<div class="footer limit">
             <p>&copy; Entrevista | Front End </p>
-        </div><!-- /.footer -->
-        `;
+        </div>`;
     }
 
 }

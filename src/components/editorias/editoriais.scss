@@ -9,7 +9,6 @@ editorias {
     .editorias__header {
         text-align: center;
         margin: auto;
-        .header__filtro {
             margin-top: 16px;
             margin-bottom: 10px;
             .filtro {
@@ -24,34 +23,8 @@ editorias {
                     font-size: 15px;
                     color: #7D7575;
                 }
-                .campo {
-                    display: inline-block;
-                    padding: 8px 12px;
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
-                    text-transform: uppercase;
-                    font-weight: bold;
-                    color: #fff;
-                    border: 0;
-                    background: #211f1f;
-                    &:active, &:focus {
-                        outline: 0;
-                    }
-                }
-                &:after {
-                    content: "";
-                    height: 31px;
-                    width: 27px;
-                    background: #211f1f url("../../assets/img/seta-baixo.png") no-repeat 50% 50%;
-                    display: inline-block;
-                    vertical-align: middle;
-                    position: absolute;
-                    pointer-events: none;
-                }
             }
-
-        }
+        
         @include mq('tablet-small') {
             display: flex;
             justify-content: space-between;
